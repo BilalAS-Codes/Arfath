@@ -90,9 +90,11 @@ export default function App() {
   const faqs = data.faq || [];
   const venueDays = data.venueDays || [];
 
-  // Countdown timer set to 20th September 2026
+  /**
+   * Countdown timer set to 20th September 2026, 6:00 PM Pacific Daylight Time (California Time, US).
+   */
   useEffect(() => {
-    const weddingDate = new Date('2026-09-20T16:00:00').getTime();
+    const weddingDate = new Date('2026-09-20T18:00:00-07:00').getTime();
     const updateCountdown = () => {
       const now = Date.now();
       const diff = weddingDate - now;
@@ -189,10 +191,10 @@ export default function App() {
                 Mahtan Mohammed
               </h2>
 
-              {/* Date added beside/under couple names as requested */}
+              {/* Date and Function Time added under couple names */}
               <div className="mt-3 py-1 px-4 rounded-full bg-black/30 backdrop-blur-sm border border-amber-500/40">
-                <span className="font-serif text-sm md:text-base tracking-[0.25em] text-amber-200 uppercase font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                  ✦ 20th September ✦
+                <span className="font-serif text-sm md:text-base tracking-[0.2em] text-amber-200 uppercase font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                  ✦ 20th September • 6:00 PM (PDT) ✦
                 </span>
               </div>
 
@@ -233,7 +235,7 @@ export default function App() {
             >
               <div className="absolute inset-0 bg-[#F8F5F2]/45 pointer-events-none" />
               <div className="relative z-10">
-                <div className="mb-2 text-[#9B734B] font-serif text-sm">✦ 20TH SEPTEMBER ✦</div>
+                <div className="mb-2 text-[#9B734B] font-serif text-sm">✦ 20TH SEPTEMBER • 6:00 PM (PDT) ✦</div>
                 <h2 className="font-serif italic text-2xl tracking-widest text-[#3E251C] uppercase">Countdown</h2>
                 <p className="text-xs italic text-[#3E251C]/80 mt-1 mb-6">{data.countdown?.message}</p>
 
@@ -363,7 +365,7 @@ export default function App() {
             {/* ===== TIMING NOTICE - BOLD AND PROMINENT ===== */}
             <div className="w-full text-center py-6 px-6 bg-[#FAF8F5] border-2 border-[#9B734B]/40 rounded-2xl shadow-sm">
               <p className="text-sm font-serif font-bold text-[#3E251C] tracking-wide">
-                ⏰ Exact time will be posted two weeks before ⏰
+                ⏰ Function Time: 6:00 PM (California Time, US) ⏰
               </p>
             </div>
 
