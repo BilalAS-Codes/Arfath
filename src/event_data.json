@@ -20,17 +20,17 @@
   ],
   "message": "\n\n\nYou are invited for our special day\n\n",
   "event_id": "98032531-8029-42fd-8ba2-3f50d3ab7f3a",
-  "headline": "\n\n\n\n\n\n\n\nMohammed\n&\nLeila\n",
-  "initials": "J&M",
+  "headline": "\n\n\n\n\n\n\n\nFaiza\n&\nArfath\n",
+  "initials": "F&A",
   "style_id": "shining-light",
   "music_url": "/audio/joyful-celebration.mp3",
-  "dress_code": "black tie",
-  "event_date": "2027-03-23",
-  "event_type": "Wedding",
+  "dress_code": "Traditional / Formal",
+  "event_date": "2026-11-08",
+  "event_type": "Nikah & Wedding Reception",
   "style_name": "Shining Light",
   "text_color": "#722F37",
   "venue_name": "the grand room",
-  "event_title": "Gregory drex I Boschman's Wedding",
+  "event_title": "Faiza & Arfath's Wedding Ceremony",
   "font_family": "Playfair Display",
   "rsvp_config": {
     "replyByDate": "2026-03-30",
@@ -109,31 +109,43 @@
     "menu": {
       "categories": [
         {
+          "title": "Welcome Drinks & Starters",
           "items": [
             {
-              "name": "Burrata & Heirloom Heirloom Medley",
-              "description": "Creamy Italian burrata paired with sun-ripened heirloom tomatoes"
+              "name": "Hyderabadi Tala Hua Gosht & Shikampur Kebab",
+              "description": "Tender spiced crispy mutton fry accompanied by fragrant melt-in-mouth smoked shami kebabs and fresh mint chutney."
+            },
+            {
+              "name": "Rooh Afza Sharbat & Badam Milk",
+              "description": "Traditional royal chilled welcome refreshments."
             }
-          ],
-          "title": "Starter"
+          ]
         },
         {
+          "title": "Main Course — Dawat-e-Khaas",
           "items": [
             {
-              "name": "Miso-Glazed Beef Tenderloin",
-              "description": "rime cut beef tenderloin, pan-seared and served over a silky parsnip purée. "
+              "name": "Authentic Hyderabadi Dum Mutton Biryani",
+              "description": "Slow-cooked fragrant basmati rice with marinated tender mutton, saffron, and rich royal spices, served with Mirchi Ka Salan & Dahi Ka Raitha."
+            },
+            {
+              "name": "Dum Ka Chicken & Bagara Rice with Dalcha",
+              "description": "Rich almond-cashew creamy slow-cooked chicken paired with seasoned bagara rice and mutton dalcha."
             }
-          ],
-          "title": "Main"
+          ]
         },
         {
+          "title": "Royal Meetha (Desserts)",
           "items": [
             {
-              "name": "Velvet White Chocolate & Raspberry Mousse",
-              "description": "A light-as-air white chocolate dome "
+              "name": "Shahi Double Ka Meetha & Qubani Ka Meetha",
+              "description": "Classic Hyderabadi saffron-infused bread pudding and stewed apricots topped with fresh malai and silver varq."
+            },
+            {
+              "name": "Hyderabadi Irani Chai & Paan",
+              "description": "Kadak Irani chai with Osmania biscuits and fragrant meetha paan."
             }
-          ],
-          "title": "dessert"
+          ]
         }
       ]
     },

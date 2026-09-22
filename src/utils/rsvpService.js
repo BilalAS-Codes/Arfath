@@ -13,34 +13,42 @@
 const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwTCIRcFjdH4U3qXGRbpp98nJxqOoruOfyaX1J6KY41Mxlg2fDgzAd0KEHbzJbTw8Id/exec';
 
 export async function submitRSVP(formData) {
+    // 1. Save locally in localStorage for 100% local operation
     try {
-        const response = await fetch(RSVP_ENDPOINT, {
+        const existing = JSON.parse(localStorage.getItem('faiza_arfath_rsvps') || '[]');
+        existing.push({
+            ...formData,
+            timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('faiza_arfath_rsvps', JSON.stringify(existing));
+    } catch (err) {
+        console.warn('Local storage write warning:', err);
+    }
+
+    // 2. Optionally sync if network is available
+    try {
+        await fetch(RSVP_ENDPOINT, {
             method: 'POST',
-            mode: 'no-cors', // Required for Google Apps Script CORS handling
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 ...formData,
                 timestamp: new Date().toISOString(),
-                event_id: 'doha-mahtan-wedding'
+                event_id: 'arfath-faiza-wedding'
             }),
         });
-        // With no-cors, we can't read the response body, but the data is saved
         return { success: true };
     } catch (error) {
-        console.error('RSVP submission error:', error);
-        // Still show success to the user — we'll retry silently
         return { success: true };
     }
 }
 
 export async function fetchRSVPs(secretKey) {
     try {
-        const response = await fetch(`${RSVP_ENDPOINT}?action=get&key=${encodeURIComponent(secretKey)}`);
-        if (!response.ok) throw new Error('Failed to fetch');
-        return await response.json();
+        const local = JSON.parse(localStorage.getItem('faiza_arfath_rsvps') || '[]');
+        return { data: local };
     } catch (error) {
-        console.error('Failed to fetch RSVPs:', error);
-        return null;
+        return { data: [] };
     }
 }
 
@@ -84,7 +92,7 @@ export async function fetchRSVPs(secretKey) {
  * function doGet(e) {
  *   try {
  *     // Simple password protection — change this to your secret key
- *     const SECRET_KEY = 'mahtan-admin-2027';
+ *     const SECRET_KEY = 'arfath-admin-2026';
  *     const providedKey = e.parameter.key;
  *     
  *     if (providedKey !== SECRET_KEY) {
