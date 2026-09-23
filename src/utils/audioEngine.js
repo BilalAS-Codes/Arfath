@@ -34,18 +34,26 @@ class AudioEngine {
       }
     });
 
-    // Auto-stop / pause when user leaves the site or switches tabs
+    // Auto-pause when user leaves and auto-resume when returning (if previously opened/started)
     if (typeof document !== 'undefined') {
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
-          this.stop();
+          if (this.playing) {
+            this.wasPlayingBeforeHidden = true;
+            this.stop(false); // pause without clearing user intent
+          }
+        } else {
+          // User returned to site / tab
+          if (this.wasPlayingBeforeHidden || this.wasEverStarted) {
+            this.start();
+          }
         }
       });
       window.addEventListener('pagehide', () => {
-        this.stop();
+        this.stop(false);
       });
       window.addEventListener('beforeunload', () => {
-        this.stop();
+        this.stop(false);
       });
     }
 
@@ -222,6 +230,9 @@ class AudioEngine {
   }
 
   start() {
+    this.wasEverStarted = true;
+    this.wasPlayingBeforeHidden = false;
+
     // Ensure Audio is instantiated
     if (!this.bgMusic) {
       this.init();
@@ -239,8 +250,17 @@ class AudioEngine {
             this.playing = true;
           })
           .catch(err => {
-            console.warn("Audio autoplay delayed until user click:", err);
-            this.playing = false;
+            console.warn("Audio play blocked or waiting user gesture:", err);
+            // Re-listen on user interaction if browser needs explicit gesture
+            const resumeOnClick = () => {
+              if (this.wasEverStarted && this.bgMusic) {
+                this.bgMusic.play().then(() => { this.playing = true; }).catch(() => {});
+              }
+              window.removeEventListener('click', resumeOnClick);
+              window.removeEventListener('touchstart', resumeOnClick);
+            };
+            window.addEventListener('click', resumeOnClick, { once: true });
+            window.addEventListener('touchstart', resumeOnClick, { once: true });
           });
       } else {
         this.playing = true;
@@ -250,7 +270,11 @@ class AudioEngine {
     }
   }
 
-  stop() {
+  stop(manual = true) {
+    if (manual) {
+      this.wasEverStarted = false;
+      this.wasPlayingBeforeHidden = false;
+    }
     if (this.bgMusic) {
       try {
         this.bgMusic.pause();
