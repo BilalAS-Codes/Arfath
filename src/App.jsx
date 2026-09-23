@@ -64,10 +64,10 @@ export default function App() {
   const menuCategories = data.menu?.categories || [];
 
   /**
-   * Countdown timer set to Nikah Date: 8th November 2026 (08-11-2026) at 6:00 PM.
+   * Countdown timer set to Nikah Date: 8th October 2026 (08-10-2026) at 1:15 PM (After Namaz-e-Zohar).
    */
   useEffect(() => {
-    const weddingDate = new Date('2026-11-08T18:00:00').getTime();
+    const weddingDate = new Date('2026-10-08T13:15:00').getTime();
     const updateCountdown = () => {
       const now = Date.now();
       const diff = weddingDate - now;
@@ -186,7 +186,7 @@ export default function App() {
                 {/* Date & Time Badge - Elegant Glassmorphism */}
                 <div className="mt-5 py-1.5 px-6 rounded-full bg-black/40 backdrop-blur-md border border-[#CBB494]/60 shadow-lg">
                   <span className="font-serif text-xs sm:text-sm tracking-[0.25em] text-[#FEF3C7] uppercase font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
-                    ✦ 08-11-2026 • 6:00 PM ✦
+                    ✦ 08-10-2026 • 1:15 PM ✦
                   </span>
                 </div>
 
@@ -252,7 +252,7 @@ export default function App() {
             {/* ===== COUNTDOWN SECTION ===== */}
             <div className="w-full bg-[#FFFDF9] border-2 border-[#CBB494] rounded-3xl p-6 shadow-xl text-center relative overflow-hidden">
               <div className="mb-2 text-[#8C5D30] font-serif text-xs font-bold uppercase tracking-widest">
-                ✦ 08-11-2026 • 6:00 PM ✦
+                ✦ 08-10-2026 • 1:15 PM ✦
               </div>
               <h2 className="font-serif italic text-2xl sm:text-3xl font-black tracking-widest text-[#2A160D] uppercase">
                 Countdown to Nikah
@@ -305,8 +305,8 @@ export default function App() {
             {/* Star Divider */}
             <IslamicStarDivider />
 
-            {/* ===== VENUES SECTION (HIGH VISIBILITY FIX) ===== */}
-            <div className="w-full">
+            {/* ===== VENUES SECTION ===== */}
+            <div className="w-full space-y-6">
               {/* Section Header */}
               <div className="text-center mb-6">
                 <div className="w-12 h-12 rounded-full bg-[#FAF4EB] border-2 border-[#CBB494] flex items-center justify-center text-[#5C3D2E] mx-auto mb-2 shadow-sm">
@@ -316,49 +316,124 @@ export default function App() {
                   Venues
                 </h2>
                 <span className="font-serif text-xs font-bold tracking-[0.2em] text-[#8C5D30] uppercase block mt-1">
-                  ✦ Ceremony & Reception ✦
+                  ✦ Nikah, Reception & Valima ✦
                 </span>
               </div>
 
-              {/* Venue Card Container */}
+              {/* 1. NIKAH VENUE: Masjid-e-Asifiya */}
               <div className="bg-white border-2 border-[#CBB494] rounded-3xl p-6 shadow-xl flex flex-col text-center overflow-hidden">
-                {/* Botanical Greenhouse Pavilion Illustration */}
-                <div className="w-full bg-[#FAF7F2] rounded-2xl p-4 border border-[#CBB494]/40 mb-4 flex items-center justify-center overflow-hidden">
-                  <img
-                    src="./venue-greenhouse-nobg.png"
-                    alt="Resham Event Centre Pavilion"
-                    className="w-full max-h-56 object-contain hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Google Maps Embed */}
                 <div className="w-full h-44 rounded-2xl overflow-hidden border-2 border-[#CBB494]/60 shadow-inner mb-4">
                   <iframe
-                    src="https://maps.google.com/maps?q=Resham+Event+Center+Fremont+CA&output=embed"
+                    src="https://maps.google.com/maps?q=Masjid-e-Asifiya+Purani+Haveli+Hyderabad&output=embed"
                     width="100%"
                     height="100%"
                     loading="lazy"
-                    title="Resham Event Centre Map"
+                    title="Masjid-e-Asifiya Map"
                     style={{ border: 0 }}
                   />
                 </div>
 
-                {/* Venue Details - Crystal-clear, deep, high contrast */}
                 <div className="px-2 flex flex-col items-center">
-                  <h3 className="font-serif italic text-2xl font-black uppercase tracking-wider text-[#2A160D]">
-                    Resham Event Centre
+                  <span className="text-[10px] font-serif uppercase tracking-widest text-[#8C5D30] font-bold">
+                    THURSDAY, 08 OCT 2026 • AFTER NAMAZ-E-ZOHAR (1:15 PM)
+                  </span>
+                  <h3 className="font-serif italic text-2xl font-black uppercase tracking-wider text-[#2A160D] mt-1">
+                    Masjid-e-Asifiya
                   </h3>
                   <p className="text-sm font-semibold text-[#4A2E20] leading-relaxed mt-1">
-                    Fremont, California, USA
+                    Purani Haveli, Opp. Princess Durre Shehwar Hospital, Hyderabad
                   </p>
 
                   <div className="mt-3 inline-block px-4 py-1.5 bg-[#FAF4EB] border border-[#CBB494] text-[#8C5D30] font-serif text-xs font-bold rounded-full">
-                    Nikah Ceremony • 6:00 PM
+                    Solemnization of Nikah
                   </div>
 
-                  {/* High Contrast Direction Button */}
                   <a
-                    href="https://maps.app.goo.gl/a9uBZg4u3rnDupwAA"
+                    href="https://maps.google.com/?q=Masjid-e-Asifiya+Purani+Haveli+Hyderabad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#4A2E20] hover:bg-[#2A160D] text-white font-serif text-xs font-bold tracking-widest uppercase rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all"
+                  >
+                    <span>Get directions</span>
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* 2. RECEPTION & DINNER: Rose Garden Function Hall */}
+              <div className="bg-white border-2 border-[#CBB494] rounded-3xl p-6 shadow-xl flex flex-col text-center overflow-hidden">
+                <div className="w-full h-44 rounded-2xl overflow-hidden border-2 border-[#CBB494]/60 shadow-inner mb-4">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Rose+Garden+Champapet+Road+Santosh+Nagar+Hyderabad&output=embed"
+                    width="100%"
+                    height="100%"
+                    loading="lazy"
+                    title="Rose Garden Function Hall Map"
+                    style={{ border: 0 }}
+                  />
+                </div>
+
+                <div className="px-2 flex flex-col items-center">
+                  <span className="text-[10px] font-serif uppercase tracking-widest text-[#8C5D30] font-bold">
+                    THURSDAY, 08 OCT 2026 • 9:00 PM
+                  </span>
+                  <h3 className="font-serif italic text-2xl font-black uppercase tracking-wider text-[#2A160D] mt-1">
+                    Rose Garden Function Hall
+                  </h3>
+                  <p className="text-sm font-semibold text-[#4A2E20] leading-relaxed mt-1">
+                    Champapet Road, Santosh Nagar, Hyderabad
+                  </p>
+
+                  <div className="mt-3 inline-block px-4 py-1.5 bg-[#FAF4EB] border border-[#CBB494] text-[#8C5D30] font-serif text-xs font-bold rounded-full">
+                    Reception & Dinner
+                  </div>
+
+                  <a
+                    href="https://maps.app.goo.gl/Zk6fszE1ceSd56nE6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#4A2E20] hover:bg-[#2A160D] text-white font-serif text-xs font-bold tracking-widest uppercase rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all"
+                  >
+                    <span>Get directions</span>
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* 3. VALIMA CEREMONY: Naseer Garden Function Plaza */}
+              <div className="bg-white border-2 border-[#CBB494] rounded-3xl p-6 shadow-xl flex flex-col text-center overflow-hidden">
+                <div className="w-full h-44 rounded-2xl overflow-hidden border-2 border-[#CBB494]/60 shadow-inner mb-4">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Naseer+Garden+Function+Hall+Shamsheer+Gunj+Hyderabad&output=embed"
+                    width="100%"
+                    height="100%"
+                    loading="lazy"
+                    title="Naseer Garden Function Plaza Map"
+                    style={{ border: 0 }}
+                  />
+                </div>
+
+                <div className="px-2 flex flex-col items-center">
+                  <span className="text-[10px] font-serif uppercase tracking-widest text-[#8C5D30] font-bold">
+                    SUNDAY, 11 OCT 2026 • 9:00 PM
+                  </span>
+                  <h3 className="font-serif italic text-2xl font-black uppercase tracking-wider text-[#2A160D] mt-1">
+                    Naseer Garden Function Plaza
+                  </h3>
+                  <p className="text-sm font-semibold text-[#4A2E20] leading-relaxed mt-1">
+                    Beside Water Reservoir, New Road, Shamsheer Gunj, Hyderabad
+                  </p>
+
+                  <div className="mt-3 inline-block px-4 py-1.5 bg-[#FAF4EB] border border-[#CBB494] text-[#8C5D30] font-serif text-xs font-bold rounded-full">
+                    Valima Ceremony & Dinner
+                  </div>
+
+                  <a
+                    href="https://maps.app.goo.gl/NGWrxnkKqc8SJXRP9"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#4A2E20] hover:bg-[#2A160D] text-white font-serif text-xs font-bold tracking-widest uppercase rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all"

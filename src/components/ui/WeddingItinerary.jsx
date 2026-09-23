@@ -167,26 +167,32 @@ const DuaRukhsatiIcon = () => (
 );
 
 export default function WeddingItinerary() {
-  // Pure Islamic Wedding Schedule: Nikah, Dawat, Dua & Rukhsati — Khallas!
+  // Sacred Schedule: Nikah, Reception & Dinner, and Valima Ceremony
   const events = [
     {
-      time: '18:00',
-      tag: 'NIKAH',
-      desc: 'Solemnization of Nikah & Khutbah\nSacred vows under the golden arch',
+      day: 'THURSDAY, 08 OCT 2026',
+      time: '1:15 PM',
+      tag: 'NIKAH CEREMONY',
+      title: 'Masjid-e-Asifiya',
+      desc: 'Solemnization of Nikah\nAfter Namaz-e-Zohar Jamath (1:15 PM)\nPurani Haveli, Opp. Princess Durre Shehwar Hospital, Hyderabad',
       icon: <NikahCeremonyIcon />,
       side: 'left'
     },
     {
-      time: '19:30',
-      tag: 'DAWAT',
-      desc: 'Hyderabadi Dawat-e-Khaas\nHyderabaadi food In sha allah',
+      day: 'THURSDAY, 08 OCT 2026',
+      time: '9:00 PM',
+      tag: 'RECEPTION & DINNER',
+      title: 'Rose Garden Function Hall',
+      desc: 'Grand Wedding Dinner & Celebration\nChampapet Road, Santosh Nagar, Hyderabad\nHyderabadi Dawat-e-Khaas In sha Allah',
       icon: <RoyalDawatIcon />,
       side: 'right'
     },
     {
-      time: '21:00',
-      tag: 'RUKHSATI',
-      desc: 'Heartfelt Dua & Rukhsati\nSeeking Allah\'s blessings for the couple',
+      day: 'SUNDAY, 11 OCT 2026',
+      time: '9:00 PM',
+      tag: 'VALIMA CEREMONY',
+      title: 'Naseer Garden Function Plaza',
+      desc: 'Auspicious Valima Ceremony & Dinner\nBeside Water Reservoir, New Road, Shamsheer Gunj, Hyderabad',
       icon: <DuaRukhsatiIcon />,
       side: 'left'
     }
@@ -201,88 +207,110 @@ export default function WeddingItinerary() {
           What have planned for you
         </h2>
         <span className="text-[11px] font-serif uppercase tracking-[0.25em] text-[#8C5D30] font-bold mt-1.5">
-          ✦ Nikah & Dawat-e-Khaas ✦
+          ✦ Nikah, Reception & Valima ✦
         </span>
       </div>
 
       {/* Main Alternating Timeline Container */}
-      <div className="relative w-full max-w-[440px] mx-auto min-h-[480px]">
-        {/* Continuous Single Vertical Line positioned at 58% */}
+      <div className="relative w-full max-w-[420px] mx-auto min-h-[480px] px-1">
+        {/* Continuous Single Vertical Line positioned centrally at 50% */}
         <div
-          className="absolute top-4 bottom-8 left-[58%] w-[1.5px] bg-[#C49A5B]/70 -translate-x-1/2 pointer-events-none"
+          className="absolute top-4 bottom-8 left-1/2 w-[1.5px] bg-[#C49A5B]/70 -translate-x-1/2 pointer-events-none"
           style={{ boxShadow: '0 0 4px rgba(196,154,91,0.2)' }}
         />
 
         {/* Milestones */}
-        <div className="space-y-12 sm:space-y-14 relative z-10">
+        <div className="space-y-10 sm:space-y-12 relative z-10">
           {events.map((item, idx) => {
             const isLeft = item.side === 'left';
 
             return (
-              <div key={idx} className="relative w-full flex items-start min-h-[105px]">
+              <div key={idx} className="relative w-full flex items-start min-h-[120px]">
                 {/* Hollow Circle Node on the vertical line aligned with Time */}
                 <div
-                  className="absolute left-[58%] top-[68px] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-[#C49A5B] bg-[#FAF6EE] z-20 shadow-xs"
+                  className="absolute left-1/2 top-[58px] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-[#C49A5B] bg-[#FAF6EE] z-20 shadow-xs"
                   style={{ boxShadow: '0 0 0 2px rgba(250,246,238,0.8)' }}
                 />
 
-                {/* Left Column (58% width) */}
-                <div className="w-[58%] pr-6 flex flex-col items-end text-right">
+                {/* Left Column (50% width) */}
+                <div className="w-1/2 pr-4 sm:pr-5 flex flex-col items-end text-right">
                   {isLeft ? (
-                    <>
+                    <div className="w-full flex flex-col items-end">
                       {/* Icon */}
-                      <div className="h-14 flex items-center justify-end mb-1 hover:scale-105 transition-transform duration-300">
+                      <div className="h-12 flex items-center justify-end mb-1 hover:scale-105 transition-transform duration-300">
                         {item.icon}
                       </div>
 
+                      {/* Day / Date Badge */}
+                      {item.day && (
+                        <span className="text-[9px] sm:text-[10px] font-sans uppercase tracking-widest text-[#8C5D30] font-bold mb-0.5 leading-tight">
+                          {item.day}
+                        </span>
+                      )}
+
                       {/* Time */}
-                      <div className="font-serif italic font-bold text-2xl sm:text-3xl text-[#1E1714] tracking-tight leading-none">
+                      <div className="font-serif italic font-bold text-xl sm:text-2xl text-[#1E1714] tracking-tight leading-none my-0.5">
                         {item.time}
                       </div>
 
-                      {/* Subtitle in Rose Script font */}
-                      <div
-                        className="font-script text-2xl sm:text-3xl text-[#9E4154] tracking-wider my-0.5"
-                        style={{ fontFamily: "'Alex Brush', 'Great Vibes', 'Pinyon Script', cursive" }}
-                      >
+                      {/* Tag / Ceremony Title - Elegant, Crisp, Highly Legible */}
+                      <div className="font-serif font-black tracking-wider text-sm sm:text-base text-[#9E4154] uppercase mt-1 leading-snug break-words">
                         {item.tag}
                       </div>
 
+                      {/* Venue Title */}
+                      {item.title && (
+                        <div className="font-serif font-bold text-xs sm:text-sm text-[#2A160D] mt-1 leading-tight">
+                          {item.title}
+                        </div>
+                      )}
+
                       {/* Description */}
-                      <div className="font-serif italic text-xs sm:text-sm text-[#3D2D24] leading-snug whitespace-pre-line mt-0.5">
+                      <div className="font-serif italic text-[11px] sm:text-xs text-[#4A352A] leading-relaxed whitespace-pre-line mt-1 max-w-[170px]">
                         {item.desc}
                       </div>
-                    </>
+                    </div>
                   ) : null}
                 </div>
 
-                {/* Right Column (42% width) */}
-                <div className="w-[42%] pl-6 flex flex-col items-start text-left">
+                {/* Right Column (50% width) */}
+                <div className="w-1/2 pl-4 sm:pl-5 flex flex-col items-start text-left">
                   {!isLeft ? (
-                    <>
+                    <div className="w-full flex flex-col items-start">
                       {/* Icon */}
-                      <div className="h-14 flex items-center justify-start mb-1 hover:scale-105 transition-transform duration-300">
+                      <div className="h-12 flex items-center justify-start mb-1 hover:scale-105 transition-transform duration-300">
                         {item.icon}
                       </div>
 
+                      {/* Day / Date Badge */}
+                      {item.day && (
+                        <span className="text-[9px] sm:text-[10px] font-sans uppercase tracking-widest text-[#8C5D30] font-bold mb-0.5 leading-tight">
+                          {item.day}
+                        </span>
+                      )}
+
                       {/* Time */}
-                      <div className="font-serif italic font-bold text-2xl sm:text-3xl text-[#1E1714] tracking-tight leading-none">
+                      <div className="font-serif italic font-bold text-xl sm:text-2xl text-[#1E1714] tracking-tight leading-none my-0.5">
                         {item.time}
                       </div>
 
-                      {/* Subtitle in Rose Script font */}
-                      <div
-                        className="font-script text-2xl sm:text-3xl text-[#9E4154] tracking-wider my-0.5"
-                        style={{ fontFamily: "'Alex Brush', 'Great Vibes', 'Pinyon Script', cursive" }}
-                      >
+                      {/* Tag / Ceremony Title - Elegant, Crisp, Highly Legible */}
+                      <div className="font-serif font-black tracking-wider text-sm sm:text-base text-[#9E4154] uppercase mt-1 leading-snug break-words">
                         {item.tag}
                       </div>
 
+                      {/* Venue Title */}
+                      {item.title && (
+                        <div className="font-serif font-bold text-xs sm:text-sm text-[#2A160D] mt-1 leading-tight">
+                          {item.title}
+                        </div>
+                      )}
+
                       {/* Description */}
-                      <div className="font-serif italic text-xs sm:text-sm text-[#3D2D24] leading-snug whitespace-pre-line mt-0.5">
+                      <div className="font-serif italic text-[11px] sm:text-xs text-[#4A352A] leading-relaxed whitespace-pre-line mt-1 max-w-[170px]">
                         {item.desc}
                       </div>
-                    </>
+                    </div>
                   ) : null}
                 </div>
               </div>

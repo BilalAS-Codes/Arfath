@@ -20,10 +20,34 @@ class AudioEngine {
   init() {
     if (this.initialized && this.bgMusic) return;
 
-    // Initialize HTML5 Audio for background music
-    this.bgMusic = new Audio("./audio/joyful-celebration.mp3");
+    // Initialize HTML5 Audio with root-relative src for guaranteed resolution across all routes
+    this.bgMusic = new Audio("/audio/wedding-nasheed.mp3");
     this.bgMusic.loop = true;
-    this.bgMusic.volume = 0.6; // Clear audible volume
+    this.bgMusic.volume = 0.7;
+    this.bgMusic.preload = "auto";
+
+    this.bgMusic.addEventListener("error", (e) => {
+      console.warn("Audio element failed to load source /audio/wedding-nasheed.mp3, trying ./audio/wedding-nasheed.mp3 fallback", e);
+      if (this.bgMusic.src && !this.bgMusic.src.endsWith("./audio/wedding-nasheed.mp3")) {
+        this.bgMusic.src = "./audio/wedding-nasheed.mp3";
+        this.bgMusic.load();
+      }
+    });
+
+    // Auto-stop / pause when user leaves the site or switches tabs
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          this.stop();
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        this.stop();
+      });
+      window.addEventListener('beforeunload', () => {
+        this.stop();
+      });
+    }
 
     // Create audio context for Web Audio API if supported
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -198,38 +222,32 @@ class AudioEngine {
   }
 
   start() {
+    // Ensure Audio is instantiated
     if (!this.bgMusic) {
-      this.bgMusic = new Audio("./audio/joyful-celebration.mp3");
-      this.bgMusic.loop = true;
-      this.bgMusic.volume = 0.7;
+      this.init();
     }
 
-    // Try playing background music track directly
-    this.bgMusic.currentTime = this.bgMusic.currentTime || 0;
-    const playPromise = this.bgMusic.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          this.playing = true;
-        })
-        .catch(err => {
-          console.warn("Audio autoplay blocked or interrupted:", err);
-          // Retry playing on user gesture fallback
-          const retryOnUserInteraction = () => {
-            if (this.bgMusic) {
-              this.bgMusic.play().then(() => {
-                this.playing = true;
-              }).catch(() => {});
-            }
-            window.removeEventListener('click', retryOnUserInteraction);
-            window.removeEventListener('touchstart', retryOnUserInteraction);
-          };
-          window.addEventListener('click', retryOnUserInteraction, { once: true });
-          window.addEventListener('touchstart', retryOnUserInteraction, { once: true });
-        });
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
     }
 
-    this.playing = true;
+    try {
+      const playPromise = this.bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            this.playing = true;
+          })
+          .catch(err => {
+            console.warn("Audio autoplay delayed until user click:", err);
+            this.playing = false;
+          });
+      } else {
+        this.playing = true;
+      }
+    } catch (e) {
+      console.warn("Audio play call failed:", e);
+    }
   }
 
   stop() {

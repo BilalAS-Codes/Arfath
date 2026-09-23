@@ -14,12 +14,12 @@ export function VideoLanding({ onOpenComplete }) {
   }, []);
 
   const handleClick = () => {
-    // Start background music audio immediately on user click
+    // Start background nasheed music immediately on user gesture
     audioEngine.start();
 
     if (videoRef.current) {
-      // Unmute video so its soundtrack or audio plays if present
-      videoRef.current.muted = false;
+      // Keep envelope video muted so background nasheed plays without interference or browser block
+      videoRef.current.muted = true;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise
@@ -28,17 +28,8 @@ export function VideoLanding({ onOpenComplete }) {
             setIsVideoLoaded(true);
           })
           .catch((err) => {
-            console.warn("Video play attempt failed, trying muted play:", err);
-            if (videoRef.current) {
-              videoRef.current.muted = true;
-              videoRef.current.play().then(() => {
-                setIsPlaying(true);
-                setIsVideoLoaded(true);
-              }).catch(() => {
-                // If video fails completely, skip to site
-                onOpenComplete();
-              });
-            }
+            console.warn("Envelope video play error, advancing directly:", err);
+            onOpenComplete();
           });
       }
     }
